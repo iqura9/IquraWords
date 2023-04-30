@@ -11,7 +11,7 @@
         "projectName": "Server",
         "projectPath": "E:\\Git\\IquraWords\\Server\\Server.csproj",
         "packagesPath": "C:\\Users\\pozit\\.nuget\\packages\\",
-        "outputPath": "E:\\Git\\IquraWords\\Server/obj/local/",
+        "outputPath": "E:\\Git\\IquraWords\\Server\\obj\\local\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pozit\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -42,7 +42,7 @@
           "dependencies": {
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
-              "version": "[7.0.4, )"
+              "version": "[7.0.5, )"
             },
             "Microsoft.DotNet.Watcher.Tools": {
               "target": "Package",
@@ -50,17 +50,21 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.4, )"
+              "version": "[7.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.4, )"
+              "version": "[7.0.5, )"
             },
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
               "version": "[1.18.1, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[7.0.4, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

@@ -40,3 +40,5 @@ E:\Git\IquraWords\Server\obj\local\Debug\net7.0\refint\Server.dll
 E:\Git\IquraWords\Server\obj\local\Debug\net7.0\Server.pdb
 E:\Git\IquraWords\Server\obj\local\Debug\net7.0\Server.genruntimeconfig.cache
 E:\Git\IquraWords\Server\obj\local\Debug\net7.0\ref\Server.dll
+E:\Git\IquraWords\Server\bin\local\Debug\net7.0\Npgsql.dll
+E:\Git\IquraWords\Server\bin\local\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
