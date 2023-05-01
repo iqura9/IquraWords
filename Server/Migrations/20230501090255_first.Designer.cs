@@ -12,8 +12,8 @@ using Server.Data;
 namespace Server.Migrations
 {
     [DbContext(typeof(IquraWordsDbContext))]
-    [Migration("20230430132812_second222")]
-    partial class second222
+    [Migration("20230501090255_first")]
+    partial class first
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -93,6 +93,126 @@ namespace Server.Migrations
                     b.ToTable("Language");
                 });
 
+            modelBuilder.Entity("Server.Models.LikeTable", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Collection_Id")
+                        .HasColumnType("integer")
+                        .HasColumnName("Collection_Id");
+
+                    b.Property<string>("User_Id")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("User_Id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Collection_Id");
+
+                    b.HasIndex("User_Id");
+
+                    b.ToTable("LikeTable");
+                });
+
+            modelBuilder.Entity("Server.Models.User", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Avatar_url")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("Registration_date")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("User");
+                });
+
+            modelBuilder.Entity("Server.Models.UserWord", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Date_Added")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("Date_Leaned")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("User_id")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("WordMeaning_id")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("User_id");
+
+                    b.HasIndex("WordMeaning_id");
+
+                    b.ToTable("UserWord");
+                });
+
             modelBuilder.Entity("Server.Models.Word", b =>
                 {
                     b.Property<int>("Id")
@@ -167,6 +287,44 @@ namespace Server.Migrations
                     b.Navigation("Collection");
                 });
 
+            modelBuilder.Entity("Server.Models.LikeTable", b =>
+                {
+                    b.HasOne("Server.Models.Collection", "Collection")
+                        .WithMany("LikeTable")
+                        .HasForeignKey("Collection_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Server.Models.User", "User")
+                        .WithMany("LikeTables")
+                        .HasForeignKey("User_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Collection");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Server.Models.UserWord", b =>
+                {
+                    b.HasOne("Server.Models.User", "User")
+                        .WithMany("UserWords")
+                        .HasForeignKey("User_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Server.Models.WordMeaning", "WordMeaning")
+                        .WithMany("UserWords")
+                        .HasForeignKey("WordMeaning_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+
+                    b.Navigation("WordMeaning");
+                });
+
             modelBuilder.Entity("Server.Models.Word", b =>
                 {
                     b.HasOne("Server.Models.Language", "Language")
@@ -213,6 +371,8 @@ namespace Server.Migrations
             modelBuilder.Entity("Server.Models.Collection", b =>
                 {
                     b.Navigation("Clusters");
+
+                    b.Navigation("LikeTable");
                 });
 
             modelBuilder.Entity("Server.Models.Language", b =>
@@ -220,11 +380,23 @@ namespace Server.Migrations
                     b.Navigation("Words");
                 });
 
+            modelBuilder.Entity("Server.Models.User", b =>
+                {
+                    b.Navigation("LikeTables");
+
+                    b.Navigation("UserWords");
+                });
+
             modelBuilder.Entity("Server.Models.Word", b =>
                 {
                     b.Navigation("Meanings");
 
                     b.Navigation("Terms");
+                });
+
+            modelBuilder.Entity("Server.Models.WordMeaning", b =>
+                {
+                    b.Navigation("UserWords");
                 });
 #pragma warning restore 612, 618
         }

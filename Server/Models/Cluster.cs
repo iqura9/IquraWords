@@ -10,10 +10,10 @@ namespace Server.Models
         [ForeignKey("Collection")]
         [Column("Collection_Id")]
         public int Collection_Id { get; set; }
-        public Collection Collection { get; set; }
+        public virtual Collection Collection { get; set; } = null!;
 
         [InverseProperty("Cluster")]
-        public ICollection<WordMeaning> WordMeanings { get; set; }
+        public virtual ICollection<WordMeaning> WordMeanings { get; } = new List<WordMeaning>();
         
     }
 }

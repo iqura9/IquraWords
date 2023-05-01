@@ -14,18 +14,18 @@ namespace Server.Models
         [ForeignKey("Term")]
         [Column("Term_Id")]
         public int Term_Id { get; set; }
-        public Word Term { get; set; }
+        public virtual Word Term { get; set; } = null!;
 
         [ForeignKey("Meaning")]
         [Column("Meaning_Id")]
         public int Meaning_Id { get; set; }
-        public Word Meaning { get; set; }
+        public virtual Word Meaning { get; set; } = null!;
 
         [ForeignKey("Cluster")]
         [Column("Cluster_Id")]
         public int Cluster_Id { get; set; }
-        public Cluster Cluster { get; set; }
+        public virtual Cluster Cluster { get; set; } = null!;
         [InverseProperty("WordMeaning")]
-        public ICollection<UserWord> UserWords { get; set; }
+        public virtual ICollection<UserWord> UserWords { get; } = new List<UserWord>();
     }
 }

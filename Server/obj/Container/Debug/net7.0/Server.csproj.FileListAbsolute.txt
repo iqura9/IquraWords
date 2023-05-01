@@ -42,3 +42,10 @@
 /src/Server/bin/container/Debug/net7.0/System.CodeDom.dll
 /src/Server/bin/container/Debug/net7.0/Npgsql.dll
 /src/Server/bin/container/Debug/net7.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+/src/Server/bin/container/Debug/net7.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+/src/Server/bin/container/Debug/net7.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+/src/Server/bin/container/Debug/net7.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/src/Server/bin/container/Debug/net7.0/Microsoft.Extensions.Identity.Core.dll
+/src/Server/bin/container/Debug/net7.0/Microsoft.Extensions.Identity.Stores.dll
+/src/Server/bin/container/Debug/net7.0/Microsoft.Extensions.Options.dll
+/src/Server/bin/container/Debug/net7.0/System.Security.Permissions.dll

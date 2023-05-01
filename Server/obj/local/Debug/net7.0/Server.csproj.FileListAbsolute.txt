@@ -42,3 +42,10 @@ E:\Git\IquraWords\Server\obj\local\Debug\net7.0\Server.genruntimeconfig.cache
 E:\Git\IquraWords\Server\obj\local\Debug\net7.0\ref\Server.dll
 E:\Git\IquraWords\Server\bin\local\Debug\net7.0\Npgsql.dll
 E:\Git\IquraWords\Server\bin\local\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+E:\Git\IquraWords\Server\bin\local\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+E:\Git\IquraWords\Server\bin\local\Debug\net7.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+E:\Git\IquraWords\Server\bin\local\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+E:\Git\IquraWords\Server\bin\local\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
+E:\Git\IquraWords\Server\bin\local\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
+E:\Git\IquraWords\Server\bin\local\Debug\net7.0\Microsoft.Extensions.Options.dll
+E:\Git\IquraWords\Server\bin\local\Debug\net7.0\System.Security.Permissions.dll

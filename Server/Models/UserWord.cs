@@ -11,9 +11,9 @@ namespace Server.Models
         //public DateTime Date_Updated { get; set;}
         [ForeignKey("WordMeaning")]
         public int WordMeaning_id;
-        public WordMeaning WordMeaning { get; set; }
+        public virtual WordMeaning WordMeaning { get; set; } = null!;
         [ForeignKey("User")]
-        public int User_id;
-        public User User { get; set; }
+        public string User_id;
+        public virtual User User { get; set; } = null!;
     }
 }

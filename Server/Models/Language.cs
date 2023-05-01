@@ -11,6 +11,6 @@ namespace Server.Models
         public int Id { get; set; }
         public string Name { get; set; }
         [InverseProperty("Language")]
-        public ICollection<Word> Words { get; set;}
+        public virtual ICollection<Word> Words { get; set;} = new List<Word>();
     }
 }

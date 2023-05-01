@@ -12,10 +12,10 @@ namespace Server.Models
         [ForeignKey("Language")]
         [Column("Language_Id")]
         public int Language_Id { get; set; }
-        public Language Language { get; set; }
+        public virtual Language Language { get; set; } = null!;
         [InverseProperty("Term")]
-        public ICollection<WordMeaning> Terms { get; set;}
+        public virtual ICollection<WordMeaning> Terms { get; } = new List<WordMeaning>();
         [InverseProperty("Meaning")]
-        public ICollection<WordMeaning> Meanings { get; set;}
+        public virtual ICollection<WordMeaning> Meanings { get; } = new List<WordMeaning>();
     }
 }

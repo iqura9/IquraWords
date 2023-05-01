@@ -7,11 +7,11 @@ namespace Server.Models
         public int Id { get; set; }
         [ForeignKey("User")]
         [Column("User_Id")]
-        public int User_Id { get; set; }
-        public User User { get; set; }
+        public string User_Id { get; set; }
+        public virtual User User { get; set; } = null!;
         [ForeignKey("Collection")]
         [Column("Collection_Id")]
         public int Collection_Id { get; set; }
-        public Collection Collection { get; set; }
+        public virtual Collection Collection { get; set; } = null!;
     }
 }
