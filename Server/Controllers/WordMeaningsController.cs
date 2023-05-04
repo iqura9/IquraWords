@@ -32,12 +32,12 @@ namespace Server.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<WordMeaning>>> GetWordMeaning()
         {
-            if (_context.WordMeaning == null)
+            if (_context.WordMeanings == null)
             {
                 return NotFound();
             }
 
-            var wordMeanings = await _context.WordMeaning
+            var wordMeanings = await _context.WordMeanings
                 .Include(wm => wm.Meaning)
                 .Include(wm => wm.Term)
                 .Include(wm => wm.Term.Language)
@@ -53,11 +53,11 @@ namespace Server.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<WordMeaning>> GetWordMeaning(int id)
         {
-          if (_context.WordMeaning == null)
+          if (_context.WordMeanings == null)
           {
               return NotFound();
           }
-            var wordMeaning = await _context.WordMeaning.FindAsync(id);
+            var wordMeaning = await _context.WordMeanings.FindAsync(id);
 
             if (wordMeaning == null)
             {
@@ -103,11 +103,11 @@ namespace Server.Controllers
         [HttpPost]
         public async Task<ActionResult<WordMeaning>> PostWordMeaning(WordMeaning wordMeaning)
         {
-          if (_context.WordMeaning == null)
+          if (_context.WordMeanings == null)
           {
               return Problem("Entity set 'WordsDbContext.WordMeaning'  is null.");
           }
-            _context.WordMeaning.Add(wordMeaning);
+            _context.WordMeanings.Add(wordMeaning);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetWordMeaning", new { id = wordMeaning.Id }, wordMeaning);
@@ -117,17 +117,17 @@ namespace Server.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteWordMeaning(int id)
         {
-            if (_context.WordMeaning == null)
+            if (_context.WordMeanings == null)
             {
                 return NotFound();
             }
-            var wordMeaning = await _context.WordMeaning.FindAsync(id);
+            var wordMeaning = await _context.WordMeanings.FindAsync(id);
             if (wordMeaning == null)
             {
                 return NotFound();
             }
 
-            _context.WordMeaning.Remove(wordMeaning);
+            _context.WordMeanings.Remove(wordMeaning);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -161,14 +161,14 @@ namespace Server.Controllers
                             Language termLang = new Language();
                             Language definitionLang = new Language();
 
-                            var l1 = (from g in _context.Language
+                            var l1 = (from g in _context.Languages
                                       where g.Short_Name.Contains(termLanguageShort)
                                       select g).ToList();
                             if (l1.Count > 0)
                             {
                                 termLang = l1[0];
                             }
-                            var l2 = (from g in _context.Language
+                            var l2 = (from g in _context.Languages
                                       where g.Short_Name.Contains(definitionLanguageShort)
                                       select g).ToList();
                             if (l2.Count > 0)
@@ -185,7 +185,7 @@ namespace Server.Controllers
                                     string termValue = row.Cell(1).Value.ToString();
                                     string definitionValue = row.Cell(2).Value.ToString();
 
-                                    var existingWordMeaning = await _context.WordMeaning
+                                    var existingWordMeaning = await _context.WordMeanings
                                         .Include(wm => wm.Term)
                                         .Include(wm => wm.Meaning)
                                         .Where(wm => wm.Term.Term == termValue && wm.Meaning.Term == definitionValue)
@@ -210,7 +210,7 @@ namespace Server.Controllers
                                     wordMeaning.Term = term;
                                     wordMeaning.Meaning = definition;
 
-                                    _context.WordMeaning.Add(wordMeaning);
+                                    _context.WordMeanings.Add(wordMeaning);
                                 }
                                 catch (Exception e)
                                 {
@@ -228,7 +228,7 @@ namespace Server.Controllers
 
         private bool WordMeaningExists(int id)
         {
-            return (_context.WordMeaning?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.WordMeanings?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

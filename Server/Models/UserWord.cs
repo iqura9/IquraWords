@@ -9,11 +9,9 @@ namespace Server.Models
         public DateTime Date_Added { get; set; }
         public DateTime Date_Leaned { get; set; }
         //public DateTime Date_Updated { get; set;}
-        [ForeignKey("WordMeaning")]
-        public int WordMeaning_id;
+        public int WordMeaningId { get; set; }
         public virtual WordMeaning WordMeaning { get; set; } = null!;
-        [ForeignKey("User")]
-        public string User_id;
+        public string UserId { get; set; }
         public virtual User User { get; set; } = null!;
     }
 }

@@ -12,7 +12,6 @@ namespace Server.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Short_Name { get; set; }
-        [InverseProperty("Language")]
         [JsonIgnore]
         public virtual ICollection<Word> Words { get; set;} = new List<Word>();
     }

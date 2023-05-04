@@ -41,6 +41,7 @@ namespace Server.Data
                 new Language { Id = 2, Name="Ukrainian"},
                 new Language { Id = 3, Name="French"}
             }) ;*/
+            modelBuilder.Ignore<User>();
         }
         public void MigrateDatabase()
         {

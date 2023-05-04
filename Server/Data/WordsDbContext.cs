@@ -7,12 +7,12 @@ namespace Server.Data
     {
         public WordsDbContext(DbContextOptions<WordsDbContext> options) : base(options)
         {
-            //Database.EnsureDeleted();
-            //Database.EnsureCreated();
+            /*Database.EnsureDeleted();
+            Database.EnsureCreated();*/
         }
-        public virtual DbSet<Language> Language { get; set; } = null!;
-        public virtual DbSet<Word> Word { get; set; } = null!;
-        public virtual DbSet<WordMeaning> WordMeaning { get; set; } = null!;
+        public virtual DbSet<Language> Languages { get; set; } = null!;
+        public virtual DbSet<Word> Words { get; set; } = null!;
+        public virtual DbSet<WordMeaning> WordMeanings { get; set; } = null!;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -26,7 +26,7 @@ namespace Server.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<WordMeaning>()
-                .Ignore(wm => wm.Cluster_Id)
+                .Ignore(wm => wm.ClusterId)
                 .Ignore(wm => wm.Cluster);
             modelBuilder.Ignore<Cluster>();
             modelBuilder.Ignore<Collection>();

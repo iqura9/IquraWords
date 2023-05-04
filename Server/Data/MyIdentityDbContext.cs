@@ -10,6 +10,8 @@ namespace Server.Data
         public MyIdentityDbContext(DbContextOptions<MyIdentityDbContext> options)
             : base(options)
         {
+            //Database.EnsureDeleted();
+            //Database.EnsureCreated();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

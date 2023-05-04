@@ -8,12 +8,9 @@ namespace Server.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Text { get; set; }
-        [ForeignKey("Collection")]
-        [Column("Collection_Id")]
-        public int Collection_Id { get; set; }
+        public int CollectionId { get; set; }
         public virtual Collection Collection { get; set; } = null!;
 
-        [InverseProperty("Cluster")]
         [JsonIgnore]
         public virtual ICollection<WordMeaning> WordMeanings { get; } = new List<WordMeaning>();
         
