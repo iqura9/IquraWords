@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Server.Models
 {
@@ -13,8 +14,10 @@ namespace Server.Models
         [InverseProperty("User")]
         public virtual ICollection<UserWord> UserWords { get; } = new List<UserWord>();
         [InverseProperty("User")]
+        [JsonIgnore]
         public virtual ICollection<LikeTable> LikeTables { get; } = new List<LikeTable>();
         [InverseProperty("User")]
+        [JsonIgnore]
         public virtual ICollection<Collection> Collections { get; } = new List<Collection>();
     }
 }

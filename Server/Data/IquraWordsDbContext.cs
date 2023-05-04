@@ -21,7 +21,6 @@ namespace Server.Data
         public virtual DbSet<WordMeaning> WordMeaning { get; set; } = null!;
         public virtual DbSet<Cluster> Cluster { get; set; } = null!;
         public virtual DbSet<Collection> Collection { get; set; } = null!;
-        //public virtual DbSet<User> User { get; set; } = null!;
         public virtual DbSet<UserWord> UserWord { get; set; } = null!;
         public virtual DbSet<LikeTable> LikeTable { get; set; } = null!;
 

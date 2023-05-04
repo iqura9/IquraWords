@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Server.Models
 {
@@ -13,6 +14,7 @@ namespace Server.Models
         public virtual Collection Collection { get; set; } = null!;
 
         [InverseProperty("Cluster")]
+        [JsonIgnore]
         public virtual ICollection<WordMeaning> WordMeanings { get; } = new List<WordMeaning>();
         
     }

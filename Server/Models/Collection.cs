@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Server.Models
 {
@@ -15,8 +16,10 @@ namespace Server.Models
         public virtual User User { get; set; } = null!;
 
         [InverseProperty("Collection")]
+        [JsonIgnore]
         public virtual ICollection<Cluster> Clusters { get; set; } = new List<Cluster>();
         [InverseProperty("Collection")]
+        [JsonIgnore]
         public virtual ICollection<LikeTable> LikeTable { get; } = new List<LikeTable>();
 
     }

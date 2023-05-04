@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Server.Models
 {
@@ -26,6 +27,7 @@ namespace Server.Models
         public int Cluster_Id { get; set; }
         public virtual Cluster Cluster { get; set; } = null!;
         [InverseProperty("WordMeaning")]
+        [JsonIgnore]
         public virtual ICollection<UserWord> UserWords { get; } = new List<UserWord>();
     }
 }

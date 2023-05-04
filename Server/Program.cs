@@ -1,15 +1,17 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Server.Data;
 using Server.Models;
 using System.Net.Sockets;
+using System.Text.Json.Serialization;
 using System.Xml.Linq;
 
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("LocalConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+var connectionString = builder.Configuration.GetConnectionString("DockerConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
 builder.Services.AddDbContext<IquraWordsDbContext>(options =>
     options.UseNpgsql(connectionString));
@@ -17,9 +19,13 @@ builder.Services.AddDbContext<IquraWordsDbContext>(options =>
 builder.Services.AddDbContext<MyIdentityDbContext>(option =>
     option.UseNpgsql(connectionString));
 
+builder.Services.AddDbContext<WordsDbContext>(options =>
+    options.UseNpgsql(connectionString.Replace("IquraWords", "IquraWords_Admin")));
+
+
 builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<MyIdentityDbContext>().AddDefaultTokenProviders();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("corsapp", builder =>

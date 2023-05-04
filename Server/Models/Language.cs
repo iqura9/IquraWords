@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Server.Models
 {
@@ -12,6 +13,7 @@ namespace Server.Models
         public string Name { get; set; }
         public string Short_Name { get; set; }
         [InverseProperty("Language")]
+        [JsonIgnore]
         public virtual ICollection<Word> Words { get; set;} = new List<Word>();
     }
 }

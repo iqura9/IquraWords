@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Server.Models
 {
@@ -14,8 +15,10 @@ namespace Server.Models
         public int Language_Id { get; set; }
         public virtual Language Language { get; set; } = null!;
         [InverseProperty("Term")]
+        [JsonIgnore]
         public virtual ICollection<WordMeaning> Terms { get; } = new List<WordMeaning>();
         [InverseProperty("Meaning")]
+        [JsonIgnore]
         public virtual ICollection<WordMeaning> Meanings { get; } = new List<WordMeaning>();
     }
 }
