@@ -225,6 +225,32 @@ namespace Server.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// get Word
+        /// </summary>
+        [HttpGet("definition")]
+        public async Task<IActionResult> FindWordMeaning(string term, string language)
+        {
+            if (_context.WordMeanings == null)
+            {
+                return NotFound();
+            }
+
+            var words = await _context.WordMeanings
+                .Include(w => w.Meaning)
+                .Include(w => w.Term)
+                .Include(w => w.Term.Language)
+                .Where(w => w.Term.Language.Short_Name == language && w.Term.Term.Equals(term))
+                .Select(w => new { w.Meaning.Id, w.Meaning.Term, w.Meaning.Language })
+                .ToListAsync();
+
+            if (words == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(words);
+        }
 
         private bool WordMeaningExists(int id)
         {
