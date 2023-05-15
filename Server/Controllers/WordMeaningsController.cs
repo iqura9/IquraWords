@@ -229,7 +229,7 @@ namespace Server.Controllers
         /// get Word
         /// </summary>
         [HttpGet("definition")]
-        public async Task<IActionResult> FindWordMeaning(string term, string language)
+        public async Task<IActionResult> FindWordMeaning(string term, string lang, string defLang)
         {
             if (_context.WordMeanings == null)
             {
@@ -240,8 +240,10 @@ namespace Server.Controllers
                 .Include(w => w.Meaning)
                 .Include(w => w.Term)
                 .Include(w => w.Term.Language)
-                .Where(w => w.Term.Language.Short_Name == language && w.Term.Term.Equals(term))
+                .Include(w => w.Meaning.Language)
+                .Where(w => w.Term.Language.Short_Name == lang && w.Term.Term.Equals(term) && w.Meaning.Language.Short_Name == defLang)
                 .Select(w => new { w.Meaning.Id, w.Meaning.Term, w.Meaning.Language })
+                //.Take(10)
                 .ToListAsync();
 
             if (words == null)
